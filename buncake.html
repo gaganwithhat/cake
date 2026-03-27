@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUN CAKE - Premium Bakery | 4 Branches in Bengaluru</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .logo-icon {
+            font-size: 2.2rem;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: #fff176;
+        }
+        .hero {
+            background: linear-gradient(rgba(255,107,53,0.9), rgba(247,147,30,0.9)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23ff6b35" width="1200" height="600"/><text x="50%" y="50%" font-size="48" fill="white" text-anchor="middle" dy=".3em">Fresh Buns • Cakes • Pastries</text></svg>') center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            font-weight: 700;
+        }
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #ff6b35;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            margin: 0 0.5rem;
+            border: 2px solid #fff;
+        }
+        .cta-button:hover {
+            background: #ff6b35;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        .section {
+            padding: 5rem 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3.5rem;
+            color: #ff6b35;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            border-radius: 2px;
+        }
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        .branch-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(255,107,53,0.15);
+            border: 1px solid rgba(255,107,53,0.1);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .branch-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b35, #f7931e, #ff6b35);
+        }
+        .branch-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(255,107,53,0.25);
+        }
+        .branch-number {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            box-shadow: 0 5px 15px rgba(255,107,53,0.4);
+        }
+        .branch-icon {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .branch-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b35;
+            margin-bottom: 1.2rem;
+        }
+        .branch-address {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .menu-category {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 4px solid #ff6b35;
+        }
+        .menu-category h3 {
+            color: #ff6b35;
+            margin-bottom: 2rem;
+            font-size: 1.6rem;
+            text-align: center;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px dashed #eee;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .price {
+            font-weight: bold;
+            color: #ff6b35;
+            font-size: 1.2rem;
+        }
+        .products {
+            background: linear-gradient(135deg, #fff8e1 0%, #fff3e0 100%);
+            padding: 4rem 0;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        .product-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        footer {
+            background: linear-gradient(135deg, #333 0%, #222 100%);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .footer-branches {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            font-size: 1rem;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .branches-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav>
+            <div class="logo">
+                <span class="logo-icon">🍰</span>
+                BUN CAKE
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#branches">Branches</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#products">Products</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>BUN CAKE</h1>
+            <p class="subtitle">Freshly Baked Buns • Premium Cakes • Delicious Pastries<br>
+            4 Branches Serving Bengaluru with Love</p>
+            <div>
+                <a href="#branches" class="cta-button">Find Branch</a>
+                <a href="#menu" class="cta-button">View Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="branches" class="section">
+            <h2 class="section-title">🗺️ Our 4 Branches</h2>
+            <div class="branches-grid">
+                <div class="branch-card">
+                    <div class="branch-number">1</div>
+                    <div class="branch-icon"><i class="fas fa-store"></i></div>
+                    <div class="branch-title">Shanti Nagar, Devanahalli</div>
+                    <div class="branch-address">
+                        Shanti Nagar, Devanahalli<br>
+                        Southegowdanahalli, Karnataka 562110
+                    </div>
+                    <a href="https://maps.app.goo.gl/Q11NPxVzgtSJpsjY9" target="_blank" class="cta-button" style="width: 100%; margin-top: 1rem;">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+
+                <div class="branch-card">
+                    <div class="branch-number">2</div>
+                    <div class="branch-icon"><i class="fas fa-store"></i></div>
+                    <div class="branch-title">Krishnarajapuram</div>
+                    <div class="branch-address">
+                        2P43+2GM, Devasandra Main Rd<br>
+                        Ist Block, Ayyappa Nagar<br>
+                        Bengaluru, Karnataka 560036
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=2P43+2GM, Devasandra Main Rd, Krishnarajapuram" target="_blank" class="cta-button" style="width: 100%; margin-top: 1rem;">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+
+                <div class="branch-card">
+                    <div class="branch-number">3</div>
+                    <div class="branch-icon"><i class="fas fa-store"></i></div>
+                    <div class="branch-title">Ramamurthy Nagar</div>
+                    <div class="branch-address">
+                        957, Thambu Chetty Palya Main Rd<br>
+                        Dayananda Layout, Mukkutam Nagar<br>
+                        Bengaluru, Karnataka 560016
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=957, Thambu Chetty Palya Main Rd, Ramamurthy Nagar" target="_blank" class="cta-button" style="width: 100%; margin-top: 1rem;">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+
+                <div class="branch-card">
+                    <div class="branch-number">4</div>
+                    <div class="branch-icon"><i class="fas fa-store"></i></div>
+                    <div class="branch-title">Nagavara</div>
+                    <div class="branch-address">
+                        270, Coffee Board Layout<br>
+                        Nagavara, Bengaluru<br>
+                        Byatarayanapura CMC and OG Part, Karnataka 560024
+                    </div>
+                    <a href="https://www.google.com/maps/search/?api=1&query=270, Coffee Board Layout, Nagavara, Bengaluru" target="_blank" class="cta-button" style="width: 100%; margin-top: 1rem;">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="menu" class="section products">
+            <h2 class="section-title">🍰 Our Specialties</h2>
+            <div class="menu-grid">
+                <div class="menu-category">
+                    <h3>🥖 Fresh Buns</h3>
+                    <div class="menu-item"><span>Butter Bun</span><span class="price">₹20</span></div>
+                    <div class="menu-item"><span>Sesame Bun</span><span class="price">₹25</span></div>
+                    <div class="menu-item"><span>Cheese Bun</span><span class="price">₹35</span></div>
+                    <div class="menu-item"><span>Garlic Bun</span><span class="price">₹30</span></div>
+                </div>
+                <div class="menu-category">
+                    <h3>🍰 Cakes</h3>
+                    <div class="menu-item"><span>Black Forest (500g)</span><span class="price">₹450</span></div>
+                    <div class="menu-item"><span>Chocolate Truffle (500g)</span><span class="price">₹500</span></div>
+                    <div class="menu-item"><span>Vanilla Cake (500g)</span><span class="price">₹400</span></div>
+                    <div class="menu-item"><span>Red Velvet (500g)</span><span class="price">₹550</span></div>
+                </div>
+                <div class="menu-category">
+                    <h3>🍩 Pastries</h3>
+                    <div class="menu-item"><span>Cream Roll</span><span class="price">₹25</span></div>
+                    <div class="menu-item"><span>Chocolate Pastry</span><span class="price">₹40</span></div>
+                    <div class="menu-item"><span>Fruit Pastry</span><span class="price">₹45</span></div>
+                    <div class="menu-item"><span>Puff Pastry</span><span class="price">₹30</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-grid" style="padding: 0 0 5rem 0; margin-top: 3rem;">
+            <div class="product-card">
+                <div class="product-icon">🥖</div>
+                <h3>Fresh Buns Daily</h3>
+                <p>Hot & fresh from oven every morning</p>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">🍰</div>
+                <h3>Custom Cakes</h3>
+                <p>Birthday & anniversary specials</p>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">☕</div>
+                <h3>Hot Beverages</h3>
+                <p>Tea • Coffee • Milkshakes</p>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">📦</div>
+                <h3>Free Delivery</h3>
+                <p>Within 5km radius</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <h3 style="font-size: 2rem; margin-bottom: 1rem;">
+                <span style="font-size: 2.2rem;">🍰</span> BUN CAKE
+            </h3>
+            <div class="footer-branches">
+                <div><i class="fas fa-map-marker-alt"></i> Shanti Nagar, Devanahalli</div>
+                <div><i class="fas fa-map-marker-alt"></i> Krishnarajapuram</div>
+                <div><i class="fas fa-map-marker-alt"></i> Ramamurthy Nagar</div>
+                <div><i class="fas fa-map-marker-alt"></
