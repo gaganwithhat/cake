@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bun Cake - Delicious Cakes in Every Bite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .logo-text span {
+            color: #fbbf24;
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #fbbf24;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(30,58,138,0.9), rgba(59,130,246,0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23e6f3ff" width="1200" height="600"/><circle fill="%23dbeafe" cx="200" cy="150" r="80"/><circle fill="%2393c5fd" cx="800" cy="200" r="100"/><circle fill="%2360a5fa" cx="1000" cy="400" r="120"/></svg>');
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fbbf24;
+            color: #1e3a8a;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(251,191,36,0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(251,191,36,0.6);
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            color: #1e3a8a;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #fbbf24);
+            border-radius: 2px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .menu-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #fbbf24);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(59,130,246,0.2);
+        }
+
+        .menu-card h3 {
+            color: #1e3a8a;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #059669;
+            background: linear-gradient(135deg, #059669, #10b981);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* Branches Section */
+        .branches-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .branches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .branch-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2.5rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .branch-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.2);
+        }
+
+        .branch-icon {
+            font-size: 3.5rem;
+            color: #fbbf24;
+            margin-bottom: 1.5rem;
+        }
+
+        .branch-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .branch-address {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .phone-link {
+            color: #fbbf24;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.3rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.8rem 1.5rem;
+            background: rgba(251,191,36,0.2);
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .phone-link:hover {
+            color: #ffffff;
+            background: #fbbf24;
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
+            background: #f0f8ff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(59,130,246,0.1);
+        }
+
+        .contact-item i {
+            color: #3b82f6;
+            font-size: 1.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 2.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .logo img {
+                height: 45px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .logo-text {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW419yAgPfg3CciwtolWuz0gdQM3pfkBe9VQ&s" alt="Bun Cake Logo" loading="lazy">
+                <div class="logo-text">
+                    Bun Cake
+                    <span>Heavenly Delights</span>
+                </div>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#branches">Branches</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content fade-in">
+            <h1>🍰 Bun Cake</h1>
+            <p>Heavenly Cakes • Fresh Every Day • Perfect for Every Celebration</p>
+            <a href="#menu" class="cta-button">View Our Menu</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Delicious Cake Menu</h2>
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Branches Section -->
+    <section id="branches" class="branches-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Our 3 Branches</h2>
+            <div class="branches-grid">
+                <div class="branch-card fade-in">
+                    <div class="branch-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>📍 Branch 1 - Shanti Nagar</h3>
+                    <div class="branch-address">
+                        Devanahalli, Southegowdanahalli<br>
+                        Karnataka 562110
+                    </div>
+                    <a href="tel:09036133724" class="phone-link">
+                        <i class="fas fa-phone"></i> 09036133724
+                    </a>
+                </div>
+                <div class="branch-card fade-in">
+                    <div class="branch-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>📍 Branch 2 - Shanti Nagar</h3>
+                    <div class="branch-address">
+                        Devanahalli, Southegowdanahalli<br>
+                        Karnataka 562110
+                    </div>
+                    <a href="tel:09036133724" class="phone-link">
+                        <i class="fas fa-phone"></i> 09036133724
+                    </a>
+                </div>
+                <div class="branch-card fade-in">
+                    <div class="branch-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>📍 Branch 3 - Sidlaghatta</h3>
+                    <div class="branch-address">
+                        Opposite Citizens School<br>
+                        near Mayura Circle, Sidlaghatta<br>
+                        Karnataka 562105
+                    </div>
+                    <a href="tel:08317302226" class="phone-link">
+                        <i class="fas fa-phone"></i> 08317302226
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Get in Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Open Daily: 8AM - 10PM</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <span>Free Delivery Available</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-gift"></i>
+                    <span>Custom Orders Welcome</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Bun Cake. All rights reserved. | Made with <i class="fas fa-heart" style="color: #fbbf24;"></i> for cake lovers</p>
+        </div>
+    </footer>
+
+    <script>
+        // Complete Menu data with all 27 items
+        const menuItems = [
+            { name: "Black forest", small: 250, large: 500 },
+            { name: "Pineapple", small: 250, large: 500 },
+            { name: "White forest", small: 300, large: 600 },
+            { name: "Blackcurrant", small: 300, large: 600 },
+            { name: "Blueberry", small: 300, large: 600 },
+            { name: "Irish coffee", small: 350, large: 700 },
+            { name: "Almond alphonso", small: 350, large: 700 },
+            { name: "Oreo Forest", small: 350, large: 700 },
+            { name: "Honey Almond", small: 350, large: 700 },
+            { name: "Classic coffee", small: 350, large: 700 },
+            { name: "Pista truffle", small: 400, large: 800 },
+            { name: "Badam truffle", small: 400, large: 800 },
+            { name: "Caramel Butterscotch", small: 400, large: 800 },
+            { name: "Belgium chocolate", small: 400, large: 800 },
+            { name: "Double flavors chocolate", small: 450, large: 800 },
+            { name: "Choco almond", small: 450, large: 900 },
+            { name: "Choco pista", small: 450, large: 900 },
+            { name: "Choco chips", small: 450, large: 900 },
+            { name: "DBC", small: 450, large: 900 },
+            { name: "Mixed fruit", small: 450, large: 900 },
+            { name: "Tender coconut", small: 450, large: 900 },
+            { name: "Rainbow", small: 500, large: 1000 },
+            { name: "Red velvet", small: 500, large: 900 },
+            { name: "Rasmalai", small: 500, large: 1000 },
+            { name: "Choco hazelnut", small: 550, large: 1000 },
+            { name: "Ferrero", small: 550, large: 1000 },
+            { name: "Kitkat", small: 550, large: 1000 },
+            { name: "Dry fruits", small: 550, large: 1000 }
+        ];
+
+        // Populate menu
+        function createMenu() {
+            const menuGrid = document.getElementById('menuGrid');
+            menuItems.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'menu-card fade-in';
+                card.style.animationDelay = `${index * 0.08}s`;
+                card.innerHTML = `
+                    <h3><i class="fas fa-birthday-cake"></
